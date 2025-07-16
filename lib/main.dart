@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_app/auth/main_page.dart';
 import 'package:todolist_app/screens/login.dart';
+import 'package:todolist_app/screens/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +13,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginScreen());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Auth_Page());
   }
 }
