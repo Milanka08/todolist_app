@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist_app/const/colors.dart';
+import 'package:todolist_app/data/auth_data.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback show;
@@ -65,12 +66,15 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(fontSize: 16, color: Colors.grey[700]),
           ),
           SizedBox(width: 5),
-          Text(
-            " Sign Up",
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.deepPurple.shade400,
-              fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: widget.show,
+            child: Text(
+              " Sign Up",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.deepPurple.shade400,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
@@ -81,21 +85,26 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget Login_bottom() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          color: Colors.yellow[700],
-          borderRadius: BorderRadius.circular(10),
-        ),
+      child: GestureDetector(
+        onTap: () {
+          AuthenticationRemote().login(email.text, password.text);
+        },
+        child: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.yellow[700],
+            borderRadius: BorderRadius.circular(10),
+          ),
 
-        child: Text(
-          'LogIn',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
+          child: Text(
+            'LogIn',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 23,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

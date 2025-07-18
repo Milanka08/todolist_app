@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:todolist_app/data/auth_data.dart';
 import 'package:todolist_app/const/colors.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -94,21 +94,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget SignUp_bottom() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          color: Colors.yellow[700],
-          borderRadius: BorderRadius.circular(10),
-        ),
+      child: GestureDetector(
+        onTap: () {
+          AuthenticationRemote().registration(
+            email.text,
+            password.text,
+            confirmPassword.text,
+          );
+        },
+        child: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.yellow[700],
+            borderRadius: BorderRadius.circular(10),
+          ),
 
-        child: Text(
-          'Sign Up',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
+          child: Text(
+            'Sign Up',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 23,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
