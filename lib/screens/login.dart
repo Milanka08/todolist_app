@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: InputDecoration(
             prefixIcon: Icon(
               icon,
-              color: _focusNode.hasFocus ? custom_blue : Colors.grey,
+              color: _focusNode.hasFocus ? custom_purple : Colors.grey,
             ),
             contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             hintText: typeName,
@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.deepPurple, width: 2.0),
+              borderSide: BorderSide(color: custom_purple, width: 2.0),
             ),
           ),
         ),
@@ -154,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
         width: double.infinity,
-        height: 300,
+        height: 400,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/login.jpeg'),

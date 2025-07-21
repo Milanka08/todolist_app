@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           decoration: InputDecoration(
             prefixIcon: Icon(
               icon,
-              color: _focusNode.hasFocus ? custom_blue : Colors.grey,
+              color: _focusNode.hasFocus ? custom_purple : Colors.grey,
             ),
             contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             hintText: typeName,
@@ -154,7 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.deepPurple, width: 2.0),
+              borderSide: BorderSide(color: custom_purple, width: 2.0),
             ),
           ),
         ),
@@ -167,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
         width: double.infinity,
-        height: 300,
+        height: 350,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/login.jpeg'),

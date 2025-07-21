@@ -9,6 +9,8 @@ class Task_Widget extends StatefulWidget {
 }
 
 class _Task_WidgetState extends State<Task_Widget> {
+  bool isDone = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,109 @@ class _Task_WidgetState extends State<Task_Widget> {
                   imageee(),
 
                   // title and subtitle
-                  Row(),
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 20),
+                          Text(
+                            'Task Title',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Checkbox(
+                            value: isDone,
+                            onChanged: (value) {
+                              setState(() {
+                                isDone = !isDone;
+                              });
+                            },
+                          ),
+
+                          SizedBox(height: 5),
+                          Text(
+                            'Task Subtitle',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 90,
+
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.purple[400],
+                                    borderRadius: BorderRadius.circular(18),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 6,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Image.asset('images/time_icon.png'),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          'Time',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Container(
+                                  width: 90,
+
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.purple[400],
+                                    borderRadius: BorderRadius.circular(18),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 6,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Image.asset('images/edit_icon.png'),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          'Edit',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -52,7 +156,7 @@ class _Task_WidgetState extends State<Task_Widget> {
   Widget imageee() {
     return Container(
       width: 100,
-      height: 1300,
+      height: 130,
 
       decoration: BoxDecoration(
         color: Colors.white,
