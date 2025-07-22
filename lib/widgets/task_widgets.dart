@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist_app/const/colors.dart';
+import 'package:todolist_app/screens/edit_screen.dart';
 
 class Task_Widget extends StatefulWidget {
   const Task_Widget({super.key});
@@ -13,142 +14,149 @@ class _Task_WidgetState extends State<Task_Widget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      body: SafeArea(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: Container(
+        width: double.infinity,
+        height: 130,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 2), // changes position of shadow
+            ),
+          ],
+        ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          child: Container(
-            width: double.infinity,
-            height: 130,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 2), // changes position of shadow
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              //image
+              imageee(),
+              SizedBox(width: 25),
+
+              // title and subtitle
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Task Title',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Checkbox(
+                          activeColor: custom_purple,
+                          value: isDone,
+                          onChanged: (value) {
+                            setState(() {
+                              isDone = !isDone;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 5),
+                    Text(
+                      'Task Subtitle',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                    Spacer(),
+                    edit_time(),
+                  ],
                 ),
-              ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget edit_time() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        children: [
+          Container(
+            width: 90,
+            height: 30,
+            decoration: BoxDecoration(
+              color: Colors.purple[400],
+              borderRadius: BorderRadius.circular(18),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               child: Row(
                 children: [
-                  //image
-                  imageee(),
-
-                  // title and subtitle
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 20),
-                          Text(
-                            'Task Title',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Checkbox(
-                            value: isDone,
-                            onChanged: (value) {
-                              setState(() {
-                                isDone = !isDone;
-                              });
-                            },
-                          ),
-
-                          SizedBox(height: 5),
-                          Text(
-                            'Task Subtitle',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 90,
-
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: Colors.purple[400],
-                                    borderRadius: BorderRadius.circular(18),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 6,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Image.asset('images/time_icon.png'),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          'Time',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10),
-                                Container(
-                                  width: 90,
-
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: Colors.purple[400],
-                                    borderRadius: BorderRadius.circular(18),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 6,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Image.asset('images/edit_icon.png'),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          'Edit',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  Image.asset('images/time_icon.png'),
+                  SizedBox(width: 5),
+                  Text(
+                    'Time',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-        ),
+          SizedBox(width: 20),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => Edit_Screen()));
+              // Handle edit action
+            },
+            child: Container(
+              width: 90,
+              height: 30,
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                child: Row(
+                  children: [
+                    Image.asset('images/edit_icon.png'),
+                    SizedBox(width: 5),
+                    Text(
+                      'Edit',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
