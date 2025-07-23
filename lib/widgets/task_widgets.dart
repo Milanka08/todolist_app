@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:todolist_app/const/colors.dart';
 import 'package:todolist_app/screens/edit_screen.dart';
+import 'package:todolist_app/data/firestore.dart';
+import 'package:todolist_app/model/notes_model.dart';
 
 class Task_Widget extends StatefulWidget {
-  const Task_Widget({super.key});
+  Note _note;
+  Task_Widget(this._note, {super.key});
 
   @override
   State<Task_Widget> createState() => _Task_WidgetState();
@@ -49,7 +52,7 @@ class _Task_WidgetState extends State<Task_Widget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Task Title',
+                          widget._note.title,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -70,7 +73,7 @@ class _Task_WidgetState extends State<Task_Widget> {
 
                     SizedBox(height: 5),
                     Text(
-                      'Task Subtitle',
+                      widget._note.subtitle,
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
@@ -108,7 +111,7 @@ class _Task_WidgetState extends State<Task_Widget> {
                   Image.asset('images/time_icon.png'),
                   SizedBox(width: 5),
                   Text(
-                    'Time',
+                    widget._note.time,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -169,7 +172,7 @@ class _Task_WidgetState extends State<Task_Widget> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage('images/Ex.jpeg'),
+          image: AssetImage('images/${[widget._note.image]}'),
           fit: BoxFit.cover,
         ),
       ),

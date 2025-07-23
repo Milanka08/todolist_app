@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:todolist_app/const/colors.dart';
+import 'package:todolist_app/data/firestore.dart';
 import 'package:todolist_app/screens/add_note_screen.dart';
 import 'package:todolist_app/screens/home.dart';
 import 'package:todolist_app/widgets/task_widgets.dart';
@@ -46,11 +48,21 @@ class _Home_PageState extends State<Home_Page> {
             }
             return true;
           },
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return Task_Widget();
+          child: StreamBuilder<QuerySnapshot>(
+            stream: Firestore_Datasource().getNotesStream(),
+            builder: (context, Snapshot) {
+              if (!Snapshot.hasData) {
+                return CircularProgressIndicator();
+              }
+              final noteList = Firestore_Datasource().getNotes(Snapshot);
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  final note = noteList[index];
+                  return Task_Widget(note);
+                },
+                itemCount: noteList.length,
+              );
             },
-            itemCount: 10,
           ),
         ),
       ),
