@@ -13,10 +13,9 @@ class Task_Widget extends StatefulWidget {
 }
 
 class _Task_WidgetState extends State<Task_Widget> {
-  bool isDone = false;
-
   @override
   Widget build(BuildContext context) {
+    bool isDone = widget._note.isDone;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Container(
@@ -66,6 +65,10 @@ class _Task_WidgetState extends State<Task_Widget> {
                             setState(() {
                               isDone = !isDone;
                             });
+                            Firestore_Datasource().idDone(
+                              widget._note.id,
+                              isDone,
+                            );
                           },
                         ),
                       ],
@@ -125,9 +128,11 @@ class _Task_WidgetState extends State<Task_Widget> {
           SizedBox(width: 20),
           GestureDetector(
             onTap: () {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => Edit_Screen()));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Edit_Screen(widget._note),
+                ),
+              );
               // Handle edit action
             },
             child: Container(
@@ -172,7 +177,7 @@ class _Task_WidgetState extends State<Task_Widget> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage('images/${[widget._note.image]}'),
+          image: AssetImage('images/${widget._note.image}.jpeg'),
           fit: BoxFit.cover,
         ),
       ),

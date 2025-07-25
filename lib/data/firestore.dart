@@ -56,6 +56,7 @@ class Firestore_Datasource {
           data['subtitle'],
           data['image'],
           data['time'],
+          data['isDone'] ?? false, // ✅ handle isDone with a default value
         );
       }).toList();
 
@@ -71,5 +72,46 @@ class Firestore_Datasource {
         .doc(_auth.currentUser!.uid)
         .collection('notes')
         .snapshots();
+  }
+
+  Future<bool> idDone(String uuid, bool isDone) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('notes')
+          .doc(uuid)
+          .update({"isDone": isDone});
+      return true;
+    } catch (e) {
+      print(e);
+      return true;
+    }
+  }
+
+  Future<bool> Update_Note(
+    String uuid,
+    String title,
+    String subtitle,
+    int image,
+  ) async {
+    try {
+      DateTime data = DateTime.now();
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('notes')
+          .doc(uuid)
+          .update({
+            "title": title,
+            "subtitle": subtitle,
+            "image": image,
+            "time": '${data.hour}:${data.minute}',
+          });
+      return true;
+    } catch (e) {
+      print(e);
+      return true;
+    }
   }
 }

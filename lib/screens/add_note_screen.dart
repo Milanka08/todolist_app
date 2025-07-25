@@ -17,16 +17,6 @@ class _Add_ScreenState extends State<Add_Screen> {
   FocusNode _focusNode2 = FocusNode();
   int indexx = 0;
 
-  final List<String> imageList = [
-    'Ex.jpeg',
-    'book.jpeg',
-    'eat.jpeg',
-    'plan.jpeg',
-    'study.jpeg',
-    'skin.jpeg',
-    'hobby.jpeg',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +48,7 @@ class _Add_ScreenState extends State<Add_Screen> {
             maximumSize: Size(140, 50),
           ),
           onPressed: () {
-            Firestore_Datasource().AddNote(
-              subtitle.text,
-              title.text,
-              imageList[indexx],
-            );
+            Firestore_Datasource().AddNote(subtitle.text, title.text, indexx);
             Navigator.pop(context);
           },
           child: Text('Add Task', style: TextStyle(color: Colors.white)),
@@ -106,9 +92,7 @@ class _Add_ScreenState extends State<Add_Screen> {
               width: 140,
               height: 140,
               margin: EdgeInsets.all(8),
-              child: Column(
-                children: [Image.asset('images/${imageList[index]}')],
-              ),
+              child: Column(children: [Image.asset('images/${index}.jpeg')]),
             ),
           );
         },
