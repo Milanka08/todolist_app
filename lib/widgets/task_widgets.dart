@@ -65,7 +65,7 @@ class _Task_WidgetState extends State<Task_Widget> {
                             setState(() {
                               isDone = !isDone;
                             });
-                            Firestore_Datasource().idDone(
+                            Firestore_Datasource().isDone(
                               widget._note.id,
                               isDone,
                             );

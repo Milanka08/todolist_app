@@ -5,6 +5,7 @@ import 'package:todolist_app/const/colors.dart';
 import 'package:todolist_app/data/firestore.dart';
 import 'package:todolist_app/screens/add_note_screen.dart';
 import 'package:todolist_app/screens/home.dart';
+import 'package:todolist_app/widgets/stream_note.dart';
 import 'package:todolist_app/widgets/task_widgets.dart';
 
 class Home_Page extends StatefulWidget {
@@ -48,21 +49,19 @@ class _Home_PageState extends State<Home_Page> {
             }
             return true;
           },
-          child: StreamBuilder<QuerySnapshot>(
-            stream: Firestore_Datasource().getNotesStream(),
-            builder: (context, Snapshot) {
-              if (!Snapshot.hasData) {
-                return CircularProgressIndicator();
-              }
-              final noteList = Firestore_Datasource().getNotes(Snapshot);
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  final note = noteList[index];
-                  return Task_Widget(note);
-                },
-                itemCount: noteList.length,
-              );
-            },
+          child: Column(
+            children: [
+              Stream_note(false),
+              Text(
+                'isDone',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              ),
+              Stream_note(true),
+            ],
           ),
         ),
       ),
