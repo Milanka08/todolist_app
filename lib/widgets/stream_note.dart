@@ -5,13 +5,12 @@ import 'package:todolist_app/widgets/task_widgets.dart';
 import '../data/firestore.dart';
 
 class Stream_note extends StatelessWidget {
-  bool done;
-  Stream_note(this.done, {super.key});
+  const Stream_note({super.key});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore_Datasource().stream(done),
+      stream: Firestore_Datasource().stream(),
       builder: (context, Snapshot) {
         if (!Snapshot.hasData) {
           return CircularProgressIndicator();

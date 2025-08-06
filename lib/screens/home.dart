@@ -51,7 +51,7 @@ class _Home_PageState extends State<Home_Page> {
           },
           child: Column(
             children: [
-              Stream_note(false),
+              Stream_note(),
               Text(
                 'isDone',
                 style: TextStyle(
@@ -60,7 +60,6 @@ class _Home_PageState extends State<Home_Page> {
                   color: Colors.grey,
                 ),
               ),
-              Stream_note(true),
             ],
           ),
         ),
